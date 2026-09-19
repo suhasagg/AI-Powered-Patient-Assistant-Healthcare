@@ -1,4 +1,4 @@
-# AI-Powered Patient Assistant — Principal+ Reference Architecture
+# AI-Powered Patient Assistant —  Reference Architecture
 
 > **Purpose:** an educational, portfolio-grade reference implementation for patient support. It is **not a medical device, diagnosis engine, clinician replacement, insurer, or production EHR**. Production deployment requires clinical validation, legal/compliance review, security review, contracts/BAAs where applicable, jurisdiction-specific controls, and integration certification.
 
@@ -460,9 +460,9 @@ Medical and benefit information changes. RAG gives document/version provenance a
 
 Language models can infer intent; authoritative systems should own state mutation. The adapter enforces schemas, authorization, idempotency and reconciliation.
 
-## 26. Principal-level interview discussion
+## 26. Principal+-level discussion
 
-Be prepared to explain:
+Explanation of 
 
 - the trust boundary between model reasoning and healthcare actions;
 - why an agent is a capability boundary rather than a persona;
@@ -503,7 +503,7 @@ Be prepared to explain:
 
 It does not diagnose disease, prescribe medication, calculate medication doses, autonomously change treatment, adjudicate insurance, submit real claims, or write unrestricted clinical records. Those omissions are architectural safety decisions, not missing features.
 
-## 29. Resume framing
+## 29. Porfolio
 
 A strong description:
 
