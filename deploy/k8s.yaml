@@ -1,0 +1,52 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: patient-assistant
+spec:
+  replicas: 3
+  selector:
+    matchLabels: {app: patient-assistant}
+  template:
+    metadata:
+      labels: {app: patient-assistant}
+    spec:
+      containers:
+      - name: api
+        image: patient-assistant:latest
+        ports: [{containerPort: 8000}]
+        readinessProbe:
+          httpGet: {path: /health, port: 8000}
+        livenessProbe:
+          httpGet: {path: /health, port: 8000}
+        resources:
+          requests: {cpu: "250m", memory: "256Mi"}
+          limits: {cpu: "1", memory: "1Gi"}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: patient-assistant
+spec:
+  selector: {app: patient-assistant}
+  ports:
+  - port: 80
+    targetPort: 8000
+---
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: patient-assistant
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: patient-assistant
+  minReplicas: 3
+  maxReplicas: 30
+  metrics:
+  - type: Resource
+    resource:
+      name: cpu
+      target:
+        type: Utilization
+        averageUtilization: 65

@@ -1,0 +1,10 @@
+services:
+  patient-assistant:
+    build:
+      context: ..
+      dockerfile: deploy/Dockerfile
+    ports:
+      - "8000:8000"
+    environment:
+      LLM_MODE: mock
+      VECTOR_MODE: memory
